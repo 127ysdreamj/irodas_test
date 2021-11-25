@@ -1,0 +1,24 @@
+{% extends 'app/base.html' %}
+{% load humanize %}
+
+{% block content %}
+
+<div class="cart">
+
+<h2>カート</h2>
+  {% for product, num in cart_products.items %}
+    <div class="order-item">
+     <div class="order-item-image">
+       <a href="{% url 'app:detail' product.id %}">
+         <img src="{{ product.image.url }}" class="product-img">
+       </a> 
+     </div>
+     <div class="order-item-info">
+       <h2>{{ product.name }}</h2>
+       <div>価格:<span class="info-value">{{ product.price | intcomma }}</span></div>
+       <div>個数:<span class="info-value">{{ num | intcomma }}</span></div>
+     </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
